@@ -1,0 +1,94 @@
+routers = dict(
+
+    # base router
+    BASE=dict(
+        default_application='',
+	applications=['relatorios', 'ura', 'portabilidade', 'agenda', 'gravacao','admin', 'forip', 'admanager', 'provisionamento',
+		      'ubercred', 'projeto']
+    ),
+
+
+    agenda=dict(
+    	default_controller='initial',
+    	default_function='principal',
+    	controllers=['initial', 'manager'],
+    	functions=['delete', 'teste1', 'redireciona', 'adicionar', 'principal', 'agenda', 
+		   'particular', 'log_out', 'log_in', 'ligacao', 'permissao']
+    ),
+
+	relatorios=dict(
+    		default_controller='initial',
+    		default_function='principal',
+        	controllers=['initial', 'manager'],
+    		functions=['principal', 'show_gravacoes', 'link_player', 'form_gravacoes', 'submit_form',
+                	   'show_saintes', 'form_saintes', 'form_entrantes', 'show_grid', 'post', 'teste', 'post.load',
+			   'login', 'logout']
+    ),
+
+
+    forip=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'manager'],
+        functions=['home', 'contact', 'about', 'user', 'log', 'cron',
+            'user', 'register', 'login', 'principal', 'log_out', 'log_in', 'get_json', 'submit_contato']
+    ),
+    ura=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'manager'],
+        functions=['audio', 'add_audio', 'uras', 'add_uras', 'acoes', 'add_acoes', 'ura_acoes', 'add_ura_acoes',
+			'ajax_uras',  'ajax_ramais', 'ajax_acoes', 'ajax_audios', 'form_ura_acoes', 'sobre',
+			'principal', 'valida_form', 'login', 'logout']
+    ),
+    admanager=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'funcional', 'ramais', 'ramais_v', 'queues', 'prepago', 'bilhetes', 'appadmin', 'listas', 'manager', 
+		     'provisionamento'],
+        functions=['home', 'contact', 'about', 'user', 'log', 'account', 'download', 'profile', 'change_password', 'request_reset_password', 'posts', 'user', 'register', 'login', 'principal', 'dashboard', 'log_out', 'log_in', 'users', 'form_users', 'groups', 'membership', 'not_authorized', 'no_authorized', 'f_troncos', 'f_troncos_fisicos', 'f_troncos_form', 'f_troncos_fisicos_form', 'f_destinos', 'f_destinos_form', 'f_empresa', 'insert_permissao_menu','f_empresa_form', 'f_tarifacao', 'f_tarifacao_form', 'f_rotas', 'f_rotas_form', 'delete', 'f_menu', 'f_submenu', 'f_permissao_menu_form', 'f_menu_form', 'f_submenu_form', 'f_bilhetes_chamadas', 'f_bilhetes_chamadas_form', 'fisico_sip_iax_form', 'lote_fisico_form', 'fisico_dahdi_khomp_form', 'lote_dahdi_form', 'show_sip', 'show_dahdi', 'fisico_tronco_form', 'show_troncos', 'f_grupo_destinos_form', 'f_grupo_destinos', 'f_departamentos', 'f_departamentos_form', 'f_ramal_virtual', 'f_ramal_virtual_form', 'queue', 'queue_form', 'queue_extra_form', 'queue_members_form', 'queue_members', 'show_fax', 'f_fax_form', 'f_aplicacao_form', 'f_desvios', 'f_desvios_form', 'f_direcionamento', 'f_direcionamento_form', 'f_ura', 'f_ura_form', 'f_usuarios', 'f_usuarios_form', 'form_portabilidade', 'gera_teste', 'get_id_destino', 'get_chart', 'busca_chamadas', 'graph_model', 'f_ddr', 'f_ddr_form', 'show_saldos', 'f_creditos', 'f_creditos_form', 'creditos_manual', 'teste', 'credito_automatico', 'show_grid_saldos', 'show_local', 'form_local', 'meetme_form', 'meetme', 'show_callback', 'form_callback', 'form_consulta_port', 'json_csv', 'especificacoes_json', 'chamadas', 'f_listas', 'f_listas_form',
+'prov_rede', 'prov_rede_form', 'prov_equipamento', 'prov_equipamento_form', 'prov_mac', 'prov_mac_form', 'prov_ramal', 'prov_ramal_form'] 
+
+    ),
+    provisionamento=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'manager'],
+        functions=['home', 'contact', 'about', 'user', 'log', 'cron', 'empresa', 'edit_empresa', 'add_empresa', 'insert_empresa', 'update_empresa', 'delete_empresa', 'equipamento', 'edit_equipamento', 'add_equipamento',  'insert_equipamento', 'update_equipamento', 'delete_equipamento', 'mac', 'edit_mac', 'add_mac', 'insert_mac', 'update_mac', 'delete_mac', 'ramal', 'edit_ramal', 'add_ramal', 'delete_ramal', 'json_ramal', 'json_mac', 'busca_ramal', 'busca_mac',
+            'user', 'register', 'login', 'principal', 'log_out', 'log_in', 'get_json', 'submit_contato']
+    ),
+
+      portabilidade=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'manager'],
+        functions=['ligacoes', 'consultas', 'principal', 'log', 'blacklist', 'get_json']
+    ),
+
+    ubercred=dict(
+    	default_controller='initial',
+    	default_function='principal',
+    	controllers=['initial', 'busca', 'appadmin'],
+    	functions=['home', 'contact', 'about', 'user', 'log', 'account', 'index', 'emprestimo2', 'busca_emp_pend', 'busca_emp_total', 'cpf_json', 
+		'cpf_json2', 'lembrete', 'emprestimo_agt', 'teste', 'funcao', 'form_funcao', 'banco', 'form_banco', 'orgao', 'form_orgao',
+                'users', 'group', 'membership', 'register', 'login', 'principal', 'log_out', 'log_in', 'delete', 'estados_json', 'cidades_json',
+		'form_empresa', 'empresa', 'status', 'form_status', 'form_emprestimo', 'emprestimo', 'form_situacao', 'situacao', 'form_emprestimo_agt',
+		'form_emprestimo_spv', 'get_user', 'detalhes_emprestimo', 'form_users', 'agendamento_agt', 'agendamento_spv', 'agendamento_admin', 
+		'emprestimo_data', 'envio', 'form_envio', 'form_produto', 'produto',
+		'cpf_agendamento_json', 'busca_agendamento', 'emprestimo_admin_total', 'emprestimo_admin_pen']
+    ),
+
+    projeto=dict(
+        default_controller='initial',
+        default_function='principal',
+        controllers=['initial', 'manager'],
+        functions=['home', 'contact', 'about', 'user', 'download', 'account',
+                        'register', 'login', 'exemplo', 'teste1', 'teste2',
+                        'show_cliente', 'show_servidor', 'show_distro', 'get_json', 'busca_rap',
+                        'cliente_host', 'servidor_host', 'distro_host', 'product',
+                        'edit_host', 'interface', 'principal', 'detalhes_clean', 'detalhes_nav',
+			'consulta_server', 'area_server', 'consulta_chamada', 'consulta_rastreamento']
+    )
+
+
+)

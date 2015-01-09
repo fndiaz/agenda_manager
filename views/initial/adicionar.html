@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+
+
+{{block coluna2}}
+
+<div class="span6">
+<div class="well">
+
+{{=form.custom.begin}}
+
+<label>Nome:</label>
+<div>{{=form.custom.widget.nome}}</div>
+<br>
+
+<label>Telefone:</label>
+<div>{{=form.custom.widget.telefone}}</div>
+<br>
+
+<label>Obs:</label>
+<div>{{=form.custom.widget.obs}}</div>
+<br>
+
+<label>Particular:</label>
+<div>{{=form.custom.widget.particular}}</div>
+<br>
+
+<div style="display:none">
+<div>{{=form.custom.widget.ramal}}</div>
+</div>
+
+<input type="submit" value="Adicionar">
+{{=form.custom.end}}
+
+</div>
+</div>
+
+{{end}}

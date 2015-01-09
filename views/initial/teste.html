@@ -1,0 +1,26 @@
+<HTML>
+<HEAD><TITLE>Página com Frames</TITLE>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</HEAD>
+
+<body>
+
+<iframe id="frameteste" name="frame1" width='100%' height='70%' frameborder='0' src='http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp'></iframe>
+<p>pato</p>
+</body>
+
+<input type="button" id="botao" value="Sincronia">
+
+<script text="javascript">
+$('#botao').click(function() {
+	var valor = $('#frameteste').contents().find('#ui-id-4').val();  
+ 	alert(valor);    
+});
+               
+</script>
+
+</HTML>
+
+
+
+

@@ -1,0 +1,106 @@
+{{extend 'layout.html'}}
+
+
+{{block center}}
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" id="tabela" role="grid" aria-describedby="example_info" aria-sort="descending">
+                <thead>
+                        <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Obs</th>
+                                <th>#</th>
+                        </tr>
+
+    <tbody>
+
+        {{for dado in con:}}
+                        <tr>
+                                <td>{{=dado.nome}}</td>
+                                <td>{{=dado.telefone}}</td>
+                                <td>{{=dado.obs}}</td>
+                                <td>
+                                {{if session.ramal != '0':}}
+                                <a href="{{=URL(a='agenda', c='initial', f='ligacao')}}?n={{=dado.telefone}}&f={{=tipo}}">
+                                <i class="fa fa-phone"></i>
+                                </a>&nbsp;&nbsp;
+                                {{pass}}
+
+                                {{perm=session.cadastro_agenda
+                                if ((tipo == 'global') and (perm != False)) or (tipo == 'part'):}}
+                                <a href="{{=URL(a='agenda', c='initial', f='adicionar')}}?id_edit={{=dado.id}}">
+                                <i class=" icon-edit"></i></a> &nbsp;&nbsp;
+
+                                <a class="link" data-tabela="{{=tipo}}" data-nome="{{=dado.nome}}" data-value="{{=dado.id}}" href="#">
+                                <i class=" icon-trash"></i></a>
+                                {{pass}}
+                                </td>
+                        </tr>                        
+        {{pass}}
+                </tbody>
+        </table>
+
+
+{{end}}
+
+
+{{block jquery}}
+
+<link rel="stylesheet" type="text/css" href="{{=URL(a='agenda', c='static', f='css')}}/datatable/DT_bootstrap.css">
+
+<script type="text/javascript" src="{{=URL(a='agenda', c='static', f='js')}}/datatable/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{=URL(a='agenda', c='static', f='js')}}/datatable/DT_bootstrap.js"></script>
+<script>
+
+/* Table initialisation */
+$(document).ready(function() {
+        $('#tabela').dataTable( {
+                "sDom": "<'row'<'span12'l><'span12'f>r>t<'row'<'span12'i><'span12'p>>",
+                "sPaginationType": "bootstrap",
+                "aaSorting": [[ 0, "asc" ]],
+                "oLanguage": {
+                        "sLengthMenu": "Listar _MENU_ registros por pagina",
+                        "sZeroRecords": "Nada encontrado - =/",
+                        "sInfo": "Listando _START_ a _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Listando 0 a 0 de 0 registros",
+                        "sInfoFiltered": "(_MAX_ registros filtrados)"
+                },
+                "fnRowCallback"  : function(nRow,aData,iDisplayIndex) {
+                                  $('td:eq(0)', nRow).css( "text-align", "center" );
+                                  $('td:eq(1)', nRow).css( "text-align", "center" );
+                                  $('td:eq(2)', nRow).css( "text-align", "center" );
+                                  $('td:eq(3)', nRow).css( "text-align", "center" );
+                                  $('td:eq(4)', nRow).css( "text-align", "center" );
+                                  $('td:eq(5)', nRow).css( "text-align", "center" );
+                                  return nRow;
+          }
+
+        } );
+$('input').addClass('form-control')
+$('select').addClass('form-control')
+} );
+
+//$(document).ready(function() {  
+//                alert("Olá Mundo");  
+//            });
+
+//Delete
+var links = document.querySelectorAll('.link');
+for (x in links) {
+    links[x].onclick = function() { 
+    var data_attr = this.dataset;
+    //alert(data_attr.value);
+    var id   = data_attr.value;
+    var nome = data_attr.nome;
+    var tabela= data_attr.tabela;
+    decisao = confirm("Tem certeza que deseja remover o item "+nome);
+        if(decisao){
+            location.href="{{=URL(a='agenda', c='initial', f='delete')}}?id_tab="+id+"&tabela="+tabela+";"
+        }
+    return false;
+    }
+}
+
+</script>
+
+{{end}}

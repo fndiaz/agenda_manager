@@ -28,8 +28,8 @@ def ligacao():
 
     telefone = request.vars['n']
     ramal = str(session.ramal)
-    ramal_fis = str(session.ramal_fis)
-    tecnologia = str(session.tecnologia)
+    #ramal_fis = str(session.ramal_fis)
+    #tecnologia = str(session.tecnologia)
     funcao = request.vars['f']
 
     f = open('/tmp/000.cal','w')
@@ -128,10 +128,9 @@ def log_in():
     	senha_dig = form.vars.senha
     	print 'ramal digitado:%s  senha digitada:%s' %(ramal_dig, senha_dig) 
         query = (Ramal_virtual.ramal_virtual == ramal_dig)&\
-                (Ramal_virtual.ramal_fisico == Fisico.usuario)&\
                 (Ramal_virtual.id == Aplicacao.id_ramalvirtual)
-        con = db(query).select(Ramal_virtual.nome, Ramal_virtual.ramal_virtual, Fisico.usuario, Fisico.secret, 
-                    Fisico.tecnologia, Aplicacao.agenda_senha, Aplicacao.agenda_cadastro)
+        con = db(query).select(Ramal_virtual.nome, Ramal_virtual.ramal_virtual,
+                             Aplicacao.agenda_senha, Aplicacao.agenda_cadastro)
         
         if db(query).isempty():
     		print "ramal incorreto"
@@ -141,14 +140,15 @@ def log_in():
             senha=con[0].f_aplicacao.agenda_senha
 
             print 'usuario senha'
-            print session.ramal, usuario, session.ramal_fis, senha
+            print session.ramal, senha
             
             if senha_dig == str(senha):
                 print "senha ok"
                 session.ramal=con[0].f_ramal_virtual.ramal_virtual
-                session.ramal_fis=con[0].fisico_sip_iax.usuario
-                session.tecnologia=con[0].fisico_sip_iax.tecnologia
                 session.cadastro_agenda=con[0].f_aplicacao.agenda_cadastro
+                #sem uso
+                #session.ramal_fis=con[0].fisico_sip_iax.usuario
+                #session.tecnologia=con[0].fisico_sip_iax.tecnologia
 
                 print'login efetuado %s (log_in)' %(session.ramal)
                 session.flash = 'Bem Vindo %s' %(usuario)
@@ -162,8 +162,8 @@ def log_in():
 def log_out():
     session.aut='0'
     session.ramal='0'
-    session.ramal_fis='0'
-    session.tecnologia='0'
+    #session.ramal_fis='0'
+    #session.tecnologia='0'
     session.cadastro_agenda = False
     print session.cadastro_agenda
     print "logout (log_out)"

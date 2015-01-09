@@ -1,4 +1,4 @@
-Agenda.telefone.requires = IS_INT_IN_RANGE(0,99999999999999, 
-								error_message="entre com o número")
+Agenda.telefone.requires = IS_MATCH("^[0-9]*\d+[0-9]*$", 
+								error_message="somente números")
 
 

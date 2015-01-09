@@ -33,7 +33,7 @@ def ligacao():
     funcao = request.vars['f']
 
     f = open('/tmp/000.cal','w')
-    f.write('Channel: %s/%s\n' %(tecnologia, ramal_fis))
+    f.write('Channel: local/%s@permissao_ramaldestino\n' %(ramal))
     f.write('Context: ramais\n')
     f.write('Extension: %s\n' %(telefone))
     f.write('Callerid: agenda\nMaxRetries: 1\nRetryTime: 30\nWaitTime: 60')
@@ -49,17 +49,6 @@ def ligacao():
 
     session.flash = "Ligação do ramal %s para número %s" %(str(session.ramal), telefone)
     redirect(URL("initial", "/%s" %(funcao)))
-
-
-def redireciona():
-	if session.aut != '0':
-		funcao = request.vars['f']
-		redirect(URL("initial", "/%s" %(funcao)))
-		#redirect(URL("initial", "/permissao?f=%s" %(funcao)))
-	else:
-		print 'ramal %s nao esta logado (redireciona)' %(session.aut)
-		session.flash = "Faça o login"
-		redirect(URL("initial", "/log_in"))
 
 def adicionar():
     if session.ramal == '0':
@@ -193,3 +182,14 @@ def teste1():
     perm='0'
     if ((tipo == 'global') and (perm != False)) or (tipo == 'part'):
         print 'mostra'
+
+def redireciona():
+    #sem uso
+    if session.aut != '0':
+        funcao = request.vars['f']
+        redirect(URL("initial", "/%s" %(funcao)))
+        #redirect(URL("initial", "/permissao?f=%s" %(funcao)))
+    else:
+        print 'ramal %s nao esta logado (redireciona)' %(session.aut)
+        session.flash = "Faça o login"
+        redirect(URL("initial", "/log_in"))
